@@ -31,8 +31,8 @@ const displayIssues = (issues) => {
         const card = document.createElement("div");
 
         const statusImg = issue.status === "open"
-        ? "./assets/open.png"
-        : "./assets/closed.png";
+        ? "./assets/open-status.png"
+        : "./assets/Closed- Status.png";
 
         const labelAdd = issue.label
         ? `<span class="badge">${issue.label}</span>`
@@ -97,4 +97,6 @@ const displayIssues = (issues) => {
 }
 
 loadissues()
+
+
 
