@@ -11,6 +11,7 @@ const manageSpinner = (status) => {
     }
 };
 
+
 function login(){
 const username = document.getElementById("username").value
 const password = document.getElementById("password").value
@@ -27,11 +28,16 @@ alert("Invalid Credentials")
 
 }
 
-const loadissues =  () => {
+const loadIssues = () => {
+    manageSpinner(true);
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
-    .then((res) => res.json())
-    .then((json) => displayIssues(json.data))
-}
+        .then(res => res.json())
+        .then(json => {
+            issuesData = json.data;       // ✅ save for tab filtering
+            displayIssues(issuesData);
+            manageSpinner(false);
+        });
+};
 
 const displayIssues = (issues) => {
 
