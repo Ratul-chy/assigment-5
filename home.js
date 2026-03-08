@@ -1,20 +1,19 @@
-function login(){
-const username = document.getElementById("username").value
-const password = document.getElementById("password").value
+// State
+let activeTab = "all";
+let issuesData = [];
 
-if(username === "admin" && password === "admin123"){
+// ─── Spinner ────────────────────────────────────────────────────────────────
+const manageSpinner = (status) => {
+    if (status) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("issuesContainer").classList.add("hidden");
+    } else {
+        document.getElementById("issuesContainer").classList.remove("hidden");
+        document.getElementById("spinner").classList.add("hidden");
+    }
+};
 
-window.location.href = "main.html"
-
-}else{
-
-alert("Invalid Credentials")
-
-}
-
-
-}
-
+// ─── Load all issues on page load ───────────────────────────────────────────
 const loadIssues = () => {
     manageSpinner(true);
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")

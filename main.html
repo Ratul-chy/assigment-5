@@ -3,80 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GitHub Issues Tracker</title>
 
-     <!-- daisyUI -->
+    <!-- daisyUI -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <nav>
-        <div class=" bg-base-100 shadow-sm flex justify-between items-center px-4 py-2">
-            <div class="flex-1">
-                <div class=" flex items-center gap-2">
-                    
-                    <img class=" w-10 h-10" src="assets/github-logo.png" alt="GitHub Logo">
-                    <a class=" font-bold text-xl">GitHub Issues Tracker</a>
-                </div>
-            </div>
 
-            <div class="flex gap-2">
-                    <input id="searchInput" placeholder=" Search issue" class="input input-bordered w-full max-w-xs" />
-                    <button class="btn btn-soft btn-primary" onclick="searchIssue()">New Issue </button>
+    <!-- navbar -->
+    <nav class="bg-base-100 shadow-sm">
+        <div class="flex justify-between items-center px-4 py-2">
+            <div class="flex items-center gap-2">
+                <img class="w-10 h-10" src="assets/github-logo.png" alt="GitHub Logo">
+                <a class="font-bold text-xl">GitHub Issues Tracker</a>
             </div>
-            
+            <div class="flex gap-2">
+                <input id="searchInput" placeholder="Search issue" class="input input-bordered w-full max-w-xs" />
+                <button class="btn btn-soft btn-primary" id="btn-search">Search</button>
+                <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Issue</button>
+            </div>
         </div>
     </nav>
 
-    <section class=" p-4 bg-gray-100  mx-auto">
-
-        <div class="tabs flex gap-2  bg-base-100 shadow-sm p-2 rounded-box">
-
-            <button class="btn btn-soft btn-primary issue-tab-btn active " id="allTab" onclick="changeTab('all')">All</button>
-            <button class="btn btn-soft btn-outline btn-primary issue-tab-btn " id="openTab" onclick="changeTab('open')">Open</button>
-            <button class="btn btn-soft btn-outline btn-primary issue-tab-btn " id="closedTab" onclick="changeTab('closed')">Closed</button>
-
+    <!-- tabs -->
+    <section class="p-4 bg-gray-100 mx-auto">
+        <div class="flex gap-2 bg-base-100 shadow-sm p-2 rounded-box">
+            <button class="btn btn-primary issue-tab-btn" data-tab="all">All</button>
+            <button class="btn btn-outline btn-primary issue-tab-btn" data-tab="open">Open</button>
+            <button class="btn btn-outline btn-primary issue-tab-btn" data-tab="closed">Closed</button>
         </div>
-
     </section>
 
-    <section class=" p-4 bg-gray-100  mx-auto">
-        <div class=" flex justify-between gap-2  bg-base-100 shadow-sm p-2 rounded-box">
-
-            <div class=" flex items-center gap-4">
-                <img src="assets/Aperture.png" alt="Aperture Logo" class=" ">
-                <div class="">
-                    <p class="font-bold" id="issue-count"> 50  Issues</p>
+    <!-- counter -->
+    <section class="p-4 bg-gray-100 mx-auto">
+        <div class="flex justify-between gap-2 bg-base-100 shadow-sm p-2 rounded-box">
+            <div class="flex items-center gap-4">
+                <img src="assets/Aperture.png" alt="Aperture Logo">
+                <div>
+                    <p class="font-bold" id="issue-count">0 Issues</p>
                     <p>Track and manage your project issues</p>
-
                 </div>
             </div>
             <div class="flex gap-2">
-                <div class=" flex items-center gap-2">
+                <div class="flex items-center gap-2">
                     <img src="assets/Open-Status.png" alt="">
                     <p>Open</p>
-
                 </div>
-                <div class=" flex items-center gap-2">
-                    <img src="assets/Closed- Status .png" alt="">
+                <div class="flex items-center gap-2">
+                    <img src="assets/Closed-Status.png" alt="">
                     <p>Closed</p>
-
                 </div>
             </div>
-
-
         </div>
     </section>
 
+    <!-- spinner -->
     <section id="spinner" class="flex justify-center items-center py-10 w-9/12 mx-auto bg-white rounded-lg hidden">
-            <span class="loading loading-bars loading-sm"></span>
-         </section>
+        <span class="loading loading-dots loading-xl"></span>
+    </section>
 
-
+    <!-- issues grid -->
     <div id="issuesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4"></div>
 
-
-    <!-- modal -->
+   
     <section id="issue_modal" class="modal">
         <div class="modal-box">
             <div id="details-container" class="p-3 space-y-3"></div>
@@ -88,10 +78,6 @@
         </div>
     </section>
 
-    
-
-
-
-    <script src="main.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
