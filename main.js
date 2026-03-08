@@ -1,7 +1,15 @@
 let activeTab = "all";
 let issuesData = [];
 
-
+const manageSpinner = (status) => {
+    if (status) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("issuesContainer").classList.add("hidden");
+    } else {
+        document.getElementById("issuesContainer").classList.remove("hidden");
+        document.getElementById("spinner").classList.add("hidden");
+    }
+};
 
 function login(){
 const username = document.getElementById("username").value
