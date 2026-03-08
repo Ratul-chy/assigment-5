@@ -1,5 +1,9 @@
-function login(){
+let activeTab = "all";
+let issuesData = [];
 
+
+
+function login(){
 const username = document.getElementById("username").value
 const password = document.getElementById("password").value
 
@@ -32,7 +36,7 @@ const displayIssues = (issues) => {
 
         const statusImg = issue.status === "open"
         ? "./assets/open-status.png"
-        : "./assets/Closed- Status.png";
+        : "./assets/closed- status.png";
 
         const labelAdd = issue.label
         ? `<span class="badge">${issue.label}</span>`
@@ -97,6 +101,34 @@ const displayIssues = (issues) => {
 }
 
 loadissues()
+
+// tab-buttons
+const tabButtons = document.querySelectorAll(".issue-tab-btn");
+tabButtons.forEach(btn => {
+    btn.addEventListener("click",async () => {
+        activeTab = btn.dataset.tab;
+
+        tabButtons.forEach(b => {
+            b.classList.remove("btn-primary");
+            b.classList.add("btn-outline");
+        });
+
+        btn.classList.remove("btn-outline");
+        btn.classList.add("btn-primary");
+
+        manageSpinner(true);
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        if (activeTab === "all") {
+            showIssues(issuesData);
+        } else {
+            const filtered = issuesData.filter(issue => issue.status === activeTab);
+            showIssues(filtered);
+        }
+        manageSpinner(false);
+    })
+})
+
 
 
 
